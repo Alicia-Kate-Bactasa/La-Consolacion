@@ -121,7 +121,7 @@ $products = $pdo->query("SELECT id, name, price, stock FROM products WHERE delet
                         <input type="text" name="reference_number" placeholder="Enter Ref #" class="w-full px-4 py-3 rounded-xl border border-gray-200 outline-none">
                     </div>
 
-                    <button type="submit" name="complete_sale" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-5 rounded-2xl font-bold text-xl shadow-lg transform transition hover:-translate-y-1">
+                    <button type="submit" name="complete_sale" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-5 rounded-2xl font-bold text-xl shadow-lg transform transition hover:-translate-y-1">
                         Confirm Sale
                     </button>
                 </form>

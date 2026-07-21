@@ -151,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="flex justify-end gap-3 mt-4">
                 <a href="inventory.php" class="px-6 py-2 border border-gray-300 text-gray-700 bg-white rounded-md font-semibold hover:bg-gray-100 transition">Cancel</a>
-                <button type="submit" class="px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-400 text-white rounded-md font-semibold shadow hover:from-blue-700 hover:to-blue-500 transition">Add Product</button>
+                <button type="submit" class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md font-semibold shadow transition">Add Product</button>
             </div>
         </form>
     </div>

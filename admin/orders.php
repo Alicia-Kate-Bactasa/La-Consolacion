@@ -151,7 +151,7 @@ try {
         <div>
           <a
             href="walkin.php"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-bold shadow-lg hover:from-emerald-600 hover:to-blue-600 transition-all transform hover:-translate-y-1 text-lg">
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-bold shadow-lg hover:bg-blue-700 transition-all transform hover:-translate-y-1 text-lg">
             <i data-lucide="plus-circle" class="w-6 h-6"></i>
             Walk-in Order
           </a>
@@ -609,10 +609,10 @@ try {
                 </div>
 
                 <div class="flex items-center space-x-3">
-                  <button id="modalUpdateStatusBtn" class="bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+                  <button id="modalUpdateStatusBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
                     Update Status
                   </button>
-                  <button id="modalConfirmOrderBtn" class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hidden">
+                  <button id="modalConfirmOrderBtn" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hidden">
                     Confirm Order
                   </button>
                 </div>
@@ -649,7 +649,7 @@ try {
         <div class="text-center">
           <h3 id="alertTitle" class="text-xl font-bold text-gray-900 mb-2">Success</h3>
           <p id="alertMessage" class="text-gray-600 mb-6">Operation completed successfully</p>
-          <button id="alertCloseBtn" class="bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-600 hover:to-sky-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+          <button id="alertCloseBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
             OK
           </button>
         </div>
@@ -669,7 +669,7 @@ try {
           <h3 class="text-xl font-bold text-gray-900 mb-2">Please confirm it</h3>
           <p id="confirmPermanentMessage" class="text-gray-600 mb-6">Are you sure you want to make this order <span id='confirmPermanentStatus'></span>? This action is permanent and cannot be undone.</p>
           <div class="flex justify-center gap-4">
-            <button id="confirmPermanentYesBtn" class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg">Confirm</button>
+            <button id="confirmPermanentYesBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg">Confirm</button>
             <button id="confirmPermanentCancelBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-lg font-semibold transition-colors duration-200">Cancel</button>
           </div>
         </div>
@@ -689,7 +689,7 @@ try {
           <h3 class="text-xl font-bold text-gray-900 mb-2">Please confirm</h3>
           <p class="text-gray-600 mb-6">Please confirm this action to make it permanent.</p>
           <div class="flex justify-center gap-4">
-            <button id="statusChangeConfirmYesBtn" class="bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg">Confirm</button>
+            <button id="statusChangeConfirmYesBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg">Confirm</button>
             <button id="statusChangeConfirmCancelBtn" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-2 rounded-lg font-semibold transition-colors duration-200">Cancel</button>
           </div>
         </div>

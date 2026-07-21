@@ -123,14 +123,14 @@ try {
     <div class="flex gap-4">
       <a
         href="add-product.php"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 text-white font-bold shadow-lg hover:from-emerald-600 hover:to-blue-600 transition text-lg"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-600 text-white font-bold shadow-lg hover:bg-emerald-700 transition text-lg"
       >
         <i data-lucide="package" class="w-6 h-6"></i>
         Add Premade
       </a>
       <a
         href="add-custom.php"
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold shadow-lg hover:from-purple-600 hover:to-pink-600 transition text-lg"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-bold shadow-lg hover:bg-blue-700 transition text-lg"
       >
         <i data-lucide="settings" class="w-6 h-6"></i>
         Add Custom
@@ -238,7 +238,7 @@ try {
         <div class="flex justify-between items-center mt-auto pt-4 gap-3">
           <button
             type="button"
-            class="editProductBtn flex-1 px-5 py-2.5 rounded-lg text-white text-base font-bold bg-gradient-to-r from-blue-500 to-blue-400 hover:from-blue-600 hover:to-blue-500 shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+            class="editProductBtn flex-1 px-5 py-2.5 rounded-lg text-white text-base font-bold bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
             onclick="window.location.href='<?php echo (strtolower($product['type']) === 'custom') ? 'edit-custom.php' : 'edit-product.php'; ?>?id=<?php echo $product['id']; ?>'"
           >
             <i data-lucide="edit-3" class="w-5 h-5"></i> Edit
@@ -248,7 +248,7 @@ try {
             <input type="hidden" name="id" value="<?php echo $product['id']; ?>" />
             <button
               type="button"
-              class="deleteProductBtn w-full px-5 py-2.5 rounded-lg text-base font-bold bg-gradient-to-r from-red-400 to-red-500 text-white hover:from-red-500 hover:to-red-600 shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+              class="deleteProductBtn w-full px-5 py-2.5 rounded-lg text-base font-bold bg-red-600 hover:bg-red-700 text-white shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
             >
               <i data-lucide="trash-2" class="w-5 h-5"></i> Delete
             </button>
