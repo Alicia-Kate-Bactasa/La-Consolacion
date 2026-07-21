@@ -116,23 +116,33 @@ function send_smtp_email($to, $subject, $message, $from_name = 'LA Consolacion J
         $url = $url_matches[0];
         
         $btn_text = 'Click Here';
+        $btn_bg = '#1f488a';
         $btn_gradient = 'linear-gradient(135deg, #1f488a 0%, #123366 100%)';
+        
         if (strpos($url, 'verify-email.php') !== false) {
             $btn_text = 'Verify Email Address';
-            $btn_gradient = 'linear-gradient(135deg, #10b981 0%, #059669 100%)'; // Emerald gradient for verify
+            $btn_bg = '#10b981';
+            $btn_gradient = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
         } elseif (strpos($url, 'reset-password.php') !== false) {
             $btn_text = 'Reset Password';
-            $btn_gradient = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)'; // Amber gradient for reset
+            $btn_bg = '#f59e0b';
+            $btn_gradient = 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)';
         } elseif (strpos($url, 'payment-form.php') !== false) {
             $btn_text = 'Proceed to Payment';
-            $btn_gradient = 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)'; // Indigo gradient for pay
+            $btn_bg = '#4f46e5';
+            $btn_gradient = 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)';
         }
         
-        $btn_html = '<div style="text-align: center; margin: 35px 0;">
-                       <a href="' . $url . '" style="background: ' . $btn_gradient . '; color: #ffffff; text-decoration: none; padding: 14px 36px; border-radius: 50px; font-weight: 700; font-size: 15px; display: inline-block; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); letter-spacing: 0.5px; text-transform: uppercase;">
-                         ' . $btn_text . '
-                       </a>
-                     </div>';
+        // Premium centered table button wrapper for 100% email client compatibility
+        $btn_html = '<table border="0" cellpadding="0" cellspacing="0" align="center" style="margin: 35px auto; border-collapse: collapse;">
+                       <tr>
+                         <td align="center" style="border-radius: 50px; background: ' . $btn_bg . '; background: ' . $btn_gradient . '; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);" bgcolor="' . $btn_bg . '">
+                           <a href="' . $url . '" target="_blank" style="padding: 14px 38px; font-family: -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, Helvetica, Arial, sans-serif; font-size: 15px; color: #ffffff; text-decoration: none; font-weight: 700; display: inline-block; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 50px;">
+                             ' . $btn_text . '
+                           </a>
+                         </td>
+                       </tr>
+                     </table>';
                      
         $clean_content = str_replace($url, $btn_html, $clean_content);
     }
