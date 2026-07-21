@@ -121,38 +121,6 @@ try {
   </head>
   <body class="min-h-screen overflow-hidden">
     <?php include '../components/layout-header.php'; ?>
-    <div class="flex h-[calc(100vh-80px)] overflow-hidden">
-      <!-- Sidebar -->
-      <aside class="fixed top-[80px] left-0 w-72 h-[calc(100vh-80px)] glass p-6 border-r border-gray-200 overflow-y-auto">
-        <nav class="space-y-2">
-          <a href="overview.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left gradient-deep-blue text-white shadow-lg">
-            <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
-            <span class="font-medium">Overview</span>
-          </a>
-          <a href="orders.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-            <span class="font-medium">Orders</span>
-          </a>
-          <a href="inventory.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="package" class="w-5 h-5"></i>
-            <span class="font-medium">Inventory</span>
-          </a>
-          <a href="users.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="users" class="w-5 h-5"></i>
-            <span class="font-medium">Users</span>
-          </a>
-          <a href="logs.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="activity" class="w-5 h-5"></i>
-            <span class="font-medium">Logs</span>
-          </a>
-        </nav>
-        <div>
-          <a href="../logout.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 transition-all duration-200 mt-4">
-            <i data-lucide="log-out" class="w-5 h-5"></i>
-            <span class="font-medium">Log Out</span>
-          </a>
-        </div>
-      </aside>
       <!-- Main Content -->
       <main class="flex-1 p-4 lg:p-8 ml-0 lg:ml-72 overflow-y-auto h-[calc(100vh-80px)]">
         <!-- Welcome Section -->
@@ -293,7 +261,6 @@ try {
           </div>
         </div>
       </main>
-    </div>
     <script>
       lucide.createIcons();
       

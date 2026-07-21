@@ -32,6 +32,11 @@ if ($userId) {
 $currentPage = basename($_SERVER['SCRIPT_NAME']);
 $inventoryActive = in_array($currentPage, ['inventory.php', 'add-product.php', 'edit-product.php', 'edit.php']);
 ?>
+<style>
+  .gradient-deep-blue {
+    background: linear-gradient(135deg, #1f488a 0%, #123366 100%);
+  }
+</style>
 <header class="glass sticky top-0 z-50 px-6 py-4 border-b border-gray-200">
   <div class="flex items-center justify-between">
     <div class="flex items-center space-x-4">

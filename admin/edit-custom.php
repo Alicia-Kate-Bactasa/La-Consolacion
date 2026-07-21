@@ -160,66 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </style>
 </head>
 <body class="min-h-screen overflow-hidden">
-    <!-- Header -->
-    <header class="glass sticky top-0 z-50 px-6 py-4 border-b border-gray-200">
-      <div class="flex items-center justify-between">
-        <div class="flex items-center space-x-4">
-          <div class="flex items-center space-x-3">
-            <a href="../index.php">
-              <img src="../Image/LCJ.png" alt="LA Consolacion Logo" class="h-12 w-auto" />
-            </a>
-          </div>
-        </div>
-        <div class="flex items-center space-x-4">
-          <span class="text-sm text-gray-600">
-            Dashboard | Welcome <?php
-              if (isset($_SESSION['username'])) {
-                echo htmlspecialchars($_SESSION['username']);
-              } elseif (isset($_SESSION['admin_username'])) {
-                echo htmlspecialchars($_SESSION['admin_username']);
-              } else {
-                echo 'Admin';
-              }
-            ?>
-          </span>
-          <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center">
-            <i data-lucide="user" class="w-4 h-4 text-white"></i>
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="flex h-[calc(100vh-80px)] overflow-hidden">
-      <!-- Sidebar -->
-      <aside class="fixed top-[80px] left-0 w-72 h-[calc(100vh-80px)] glass p-6 border-r border-gray-200 overflow-y-auto">
-        <nav class="space-y-2">
-          <a href="overview.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
-            <span class="font-medium">Overview</span>
-          </a>
-          <a href="orders.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-            <span class="font-medium">Orders</span>
-          </a>
-          <a href="inventory.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 gradient-deep-blue text-white shadow-lg">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="package" class="lucide lucide-package w-5 h-5"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"></path><path d="M12 22V12"></path><polyline points="3.29 7 12 12 20.71 7"></polyline><path d="m7.5 4.27 9 5.15"></path></svg>
-            <span class="font-medium">Inventory</span>
-          </a>
-          <a href="users.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="users" class="w-5 h-5"></i>
-            <span class="font-medium">Users</span>
-          </a>
-          <a href="logs.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left text-gray-600 hover:bg-gray-100 transition-all duration-200">
-            <i data-lucide="activity" class="w-5 h-5"></i>
-            <span class="font-medium">Logs</span>
-          </a>
-        </nav>
-        <div>
-          <a href="../logout.php" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-red-600 hover:bg-red-50 transition-all duration-200 mt-4">
-            <i data-lucide="log-out" class="w-5 h-5"></i>
-            <span class="font-medium">Log Out</span>
-          </a>
-        </div>
-      </aside>
+    <?php include '../components/layout-header.php'; ?>
 <main class="flex-1 p-4 lg:p-8 ml-0 lg:ml-72 h-[calc(100vh-80px)]">
     <div class="w-full max-w-xl mx-auto bg-white rounded-2xl shadow-xl p-8 mt-10">
         <div class="flex items-center gap-3 mb-6">
