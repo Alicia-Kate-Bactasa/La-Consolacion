@@ -83,6 +83,27 @@ $verification_link";
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
+    <script>
+    (function() {
+      const isLoggedIn = <?php echo (isset($_SESSION['user_id']) || isset($_SESSION['admin_id']) || isset($_SESSION['admin_logged_in'])) ? 'true' : 'false'; ?>;
+      if (isLoggedIn) {
+        if (!sessionStorage.getItem('session_active')) {
+          const pathname = window.location.pathname;
+          let logoutUrl = 'logout.php';
+          if (pathname.includes('/admin/')) {
+            logoutUrl = '../logout.php';
+          } else if (pathname.includes('/payment/')) {
+            logoutUrl = '../logout.php';
+          }
+          window.location.href = logoutUrl;
+        } else {
+          sessionStorage.setItem('session_active', 'true');
+        }
+      } else {
+        sessionStorage.setItem('session_active', 'true');
+      }
+    })();
+    </script>
   </head>
   <body>
     <div class="form-bg">

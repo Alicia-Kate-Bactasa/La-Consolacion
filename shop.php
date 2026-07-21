@@ -27,6 +27,27 @@ $products = $stmt->fetchAll();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop - LCJ</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    (function() {
+      const isLoggedIn = <?php echo (isset($_SESSION['user_id']) || isset($_SESSION['admin_id']) || isset($_SESSION['admin_logged_in'])) ? 'true' : 'false'; ?>;
+      if (isLoggedIn) {
+        if (!sessionStorage.getItem('session_active')) {
+          const pathname = window.location.pathname;
+          let logoutUrl = 'logout.php';
+          if (pathname.includes('/admin/')) {
+            logoutUrl = '../logout.php';
+          } else if (pathname.includes('/payment/')) {
+            logoutUrl = '../logout.php';
+          }
+          window.location.href = logoutUrl;
+        } else {
+          sessionStorage.setItem('session_active', 'true');
+        }
+      } else {
+        sessionStorage.setItem('session_active', 'true');
+      }
+    })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css" />
