@@ -1,0 +1,17 @@
+-- Changelog:
+-- 
+-- Implemented payment system
+-- Redesigned admin panel UI (Tailwind CSS)
+-- Converted HTML files to PHP
+-- Refactored logic per section
+-- Added /product-add and /product-trash routes
+-- Integrated orders with order_items table
+-- Added status dropdown and confirm actions (Completed/Cancelled)
+-- Enabled viewing of user payment receipts
+-- Improved login and payment logic
+-- Added logs with expandable detail view
+-- Soft delete enabled for orders, users, and products
+-- Created user profile (with profile_image, phone)
+-- Added logout in profile
+-- Added admin table with levels (1 = basic, 2 = super_admin)
+-- Updated admin user management
