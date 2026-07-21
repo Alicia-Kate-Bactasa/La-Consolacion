@@ -576,65 +576,78 @@ $products = $stmt->fetchAll();
                 
                 <!-- Menu Items -->
                 <div class="px-2">
-                  <a
-                    href="profile.php"
-                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1"
-                  >
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
-                      <i class="bx bx-user text-base text-blue-600"></i>
+                  <?php if (isset($_SESSION['user_id'])): ?>
+                    <a
+                      href="profile.php"
+                      class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
+                        <i class="bx bx-user text-base text-blue-600"></i>
+                      </div>
+                      <span class="font-medium">View Profile</span>
+                      <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
+                    </a>
+                    
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                    <a
+                      href="admin/overview.php"
+                      class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1 mt-1"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
+                        <i class="bx bx-cog text-base text-blue-600"></i>
+                      </div>
+                      <span class="font-medium">Admin Dashboard</span>
+                      <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
+                    </a>
+                    <?php endif; ?>
+                    
+                    <a
+                      href="#" onclick="openCartPanel(); return false;"
+                      class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1 mt-1"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
+                        <i class="bx bx-cart text-base text-blue-600"></i>
+                      </div>
+                      <span class="font-medium">My Cart</span>
+                      <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
+                    </a>
+                    
+                    <a
+                      href="#" onclick="openOrderHistoryPanel(); return false;"
+                      class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1 mt-1"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-green-50">
+                        <i class="bx bx-history text-base text-green-600"></i>
+                      </div>
+                      <span class="font-medium">Order History</span>
+                      <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
+                    </a>
+                    
+                    <!-- Logout Section -->
+                    <div class="border-t border-gray-100 mt-2 pt-2 px-2">
+                      <a
+                        href="logout.php"
+                        class="flex items-center px-4 py-3 text-sm text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200 group mx-1"
+                      >
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-red-50">
+                          <i class="bx bx-log-out text-base text-red-600"></i>
+                        </div>
+                        <span class="font-medium">Logout</span>
+                        <i class="bx bx-chevron-right ml-auto text-red-600"></i>
+                      </a>
                     </div>
-                    <span class="font-medium">View Profile</span>
-                    <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
-                  </a>
-                  
-                  <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-                  <a
-                    href="admin/overview.php"
-                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1 mt-1"
-                  >
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
-                      <i class="bx bx-cog text-base text-blue-600"></i>
-                    </div>
-                    <span class="font-medium">Admin Dashboard</span>
-                    <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
-                  </a>
-            <?php endif; ?>
-                  
-                  <a
-                    href="#" onclick="openCartPanel(); return false;"
-                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1 mt-1"
-                  >
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
-                      <i class="bx bx-cart text-base text-blue-600"></i>
-                    </div>
-                    <span class="font-medium">My Cart</span>
-                    <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
-                  </a>
-                  
-                  <a
-                    href="#" onclick="openOrderHistoryPanel(); return false;"
-                    class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1 mt-1"
-                  >
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-green-50">
-                      <i class="bx bx-history text-base text-green-600"></i>
-                    </div>
-                    <span class="font-medium">Order History</span>
-                    <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
-                  </a>
-                </div>
-                
-                <!-- Logout Section -->
-                <div class="border-t border-gray-100 mt-2 pt-2 px-2">
-                  <a
-                    href="logout.php"
-                    class="flex items-center px-4 py-3 text-sm text-red-600 hover:bg-red-50 rounded-xl transition-all duration-200 group mx-1"
-                  >
-                    <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-red-50">
-                      <i class="bx bx-log-out text-base text-red-600"></i>
-                    </div>
-                    <span class="font-medium">Logout</span>
-                    <i class="bx bx-chevron-right ml-auto text-red-600"></i>
-                  </a>
+                  <?php else: ?>
+                    <a
+                      href="login.php"
+                      class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1"
+                    >
+                      <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
+                        <i class="bx bx-log-in text-base text-blue-600"></i>
+                      </div>
+                      <span class="font-medium">Login</span>
+                      <i class="bx bx-chevron-right ml-auto text-gray-400"></i>
+                    </a>
+                  <?php endif; ?>
                 </div>
               </div>
             </div>
