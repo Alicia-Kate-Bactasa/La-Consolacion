@@ -523,7 +523,7 @@ session_start();
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
   const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
@@ -565,7 +565,7 @@ document.addEventListener('DOMContentLoaded', function() {
       link.addEventListener('click', closeMobileMenu);
     });
   }
-});
+})();
 </script>
 
 </body>

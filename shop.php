@@ -2661,7 +2661,7 @@ $products = $stmt->fetchAll();
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
   const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
@@ -2698,7 +2698,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
-});
+})();
 </script>
 
 </body>

@@ -104,8 +104,10 @@ $inventoryActive = in_array($currentPage, ['inventory.php', 'add-product.php', '
 <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-40 z-30 hidden lg:hidden"></div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-  lucide.createIcons();
+(function() {
+  if (typeof lucide !== 'undefined') {
+    lucide.createIcons();
+  }
   
   const sidebar = document.getElementById('admin-sidebar');
   const toggleBtn = document.getElementById('mobile-sidebar-toggle');
@@ -121,5 +123,5 @@ document.addEventListener('DOMContentLoaded', function() {
     toggleBtn.addEventListener('click', toggleSidebar);
     overlay.addEventListener('click', toggleSidebar);
   }
-});
+})();
 </script>
