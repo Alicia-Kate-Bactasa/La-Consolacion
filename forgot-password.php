@@ -18,20 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $pdo->prepare('UPDATE users SET password_reset_token = ?, token_expiry = ? WHERE email = ?');
         $stmt->execute([$token, $expiry, $email]);
 
-        // Send email via Node.js server
-        $reset_link = "http://localhost/LCJ-ver2/reset-password.php?token=$token";
-        $data = [
-            'to' => $email,
-            'subject' => 'Password Reset',
-            'text' => "Click this link to reset your password: $reset_link"
-        ];
-        $ch = curl_init('http://localhost:3000/send-reset');
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
+        // Send email via direct Gmail SMTP
+        require_once 'database/mailer.php';
+        $reset_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/reset-password.php?token=$token";
+        $message_body = "Click this link to reset your password:
+
+$reset_link
+
+If you did not request this, please ignore this email.";
+        send_smtp_email($email, 'Password Reset', $message_body);
         
         $message = "If this email exists in our system, a reset link will be sent.";
         $message_type = 'success';

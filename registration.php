@@ -42,25 +42,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $expires = date("Y-m-d H:i:s", strtotime("+1 day"));
         $stmt = $pdo->prepare('INSERT INTO users (first_name, last_name, username, email, password, role, is_verified, verification_token, token_expires_at) VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?)');
         if ($stmt->execute([$first_name, $last_name, $username, $email, $hash, $role, $token, $expires])) {
-            // Send verification email
-            $verification_link = "http://localhost/LCJ-ver2/verify-email.php?token=$token";
-            $mailer_url = "http://localhost:3000/send-reset";
-            $postdata = http_build_query([
-                'to' => $email,
-                'subject' => 'Verify your account',
-                'text' => "Click this link to verify your account: $verification_link"
-            ]);
-            $opts = ['http' =>
-                [
-                    'method'  => 'POST',
-                    'header'  => 'Content-type: application/x-www-form-urlencoded',
-                    'content' => $postdata
-                ]
-            ];
-            $context  = stream_context_create($opts);
-            $mail_result = @file_get_contents($mailer_url, false, $context);
-            if ($mail_result === FALSE) {
-                $errors[] = 'Warning: Verification email could not be sent. Please contact support or try again later.';
+            // Send verification email via direct Gmail SMTP
+            require_once 'database/mailer.php';
+            $verification_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/verify-email.php?token=$token";
+            $message_body = "Thank you for registering at LA Consolacion Jewelry!
+
+Please click this link to verify your email address and activate your account:
+
+$verification_link";
+            $mail_result = send_smtp_email($email, 'Verify Your Email Address', $message_body);
+            if (!$mail_result['success']) {
+                $errors[] = 'Warning: Verification email could not be sent. Please contact support or try again later. Error: ' . $mail_result['error'];
             } else {
                 $success_message = 'Registration successful! Please check your email to verify your account.';
             }

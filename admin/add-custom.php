@@ -87,42 +87,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $orderLink = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . dirname(dirname($_SERVER['PHP_SELF'])) . '/payment-form.php?order_id=' . $newId;
             $message = "Hello $customer_name,\n\nThank you for your custom order!\n\nOrder Details:\nDescription: $description\nPrice: ₱" . number_format($price, 2) . "\n\nTo complete your order, please proceed to payment using the link below:\n$orderLink\n\nThank you!";
             
-            // Send customer email
-            $customerEmailData = [
-                'to' => $to,
-                'subject' => $subject,
-                'text' => $message
-            ];
+            // Send customer email via direct Gmail SMTP
+            require_once '../database/mailer.php';
+            send_smtp_email($to, $subject, $message);
             
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'http://localhost:3000/send-order-notification');
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($customerEmailData));
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_exec($ch);
-            curl_close($ch);
-            
-            // Send notification email to admin Gmail
-            $adminEmail = 'kenzho.suarez@gmail.com'; // Using the configured Gmail
+            // Send notification email to admin Gmail via direct Gmail SMTP
+            $adminEmail = 'kenzho.suarez@gmail.com';
             $adminSubject = 'New Custom Order Received - La Consolacion Jewelry';
-            $adminMessage = "A new custom order has been received!\n\nCustomer Details:\nName: $customer_name\nEmail: $email\n\nOrder Details:\nProduct Name: $product_name\nDescription: $description\nPrice: ₱" . number_format($price, 2) . "\nStock: $stock\n\nOrder ID: $newId\n\nView order details in admin panel.";
+            $adminMessage = "A new custom order has been received!
+
+Customer Details:
+Name: $customer_name
+Email: $email
+
+Order Details:
+Product Name: $product_name
+Description: $description
+Price: ₱" . number_format($price, 2) . "
+Stock: $stock
+
+Order ID: $newId
+
+View order details in admin panel.";
+            send_smtp_email($adminEmail, $adminSubject, $adminMessage);
             
-            $adminEmailData = [
-                'to' => $adminEmail,
-                'subject' => $adminSubject,
-                'text' => $adminMessage
-            ];
-            
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'http://localhost:3000/send-order-notification');
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($adminEmailData));
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_exec($ch);
-            curl_close($ch);
-            
+
             // Redirect back to admin inventory with success message
             header('Location: inventory.php?custom_order_sent=1&customer_email=' . urlencode($email));
             exit();
