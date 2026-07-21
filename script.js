@@ -40,7 +40,7 @@ function addToCart(product) {
     btn.textContent = "Adding...";
     btn.disabled = true;
 
-    fetch("add-to-cart.php", {
+    fetch("api/add-to-cart.php", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: `product_id=${product.id}&quantity=1`,
@@ -190,7 +190,7 @@ function openProductModal(product) {
 
 function checkCartQuantityAndUpdateButton(product) {
   // Get current cart quantity for this product
-  fetch(`get-cart-quantity.php?product_id=${product.id}`)
+  fetch(`api/get-cart-quantity.php?product_id=${product.id}`)
     .then((response) => response.json())
     .then((data) => {
       let modalInfo = document.querySelector(".product-modal-info");
@@ -310,7 +310,7 @@ function closeCartPanel() {
 }
 
 function loadCartItems() {
-  fetch("get-cart-items.php")
+  fetch("api/get-cart-items.php")
     .then((response) => response.json())
     .then((data) => {
       const cartItems = document.getElementById("cartItems");
@@ -389,7 +389,7 @@ function loadCartItems() {
 }
 
 function updateCartQuantity(productId, change) {
-  fetch("update-cart.php", {
+  fetch("api/update-cart.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `product_id=${productId}&change=${change}`,
@@ -415,7 +415,7 @@ function updateCartQuantity(productId, change) {
 }
 
 function removeCartItem(productId) {
-  fetch("update-cart.php", {
+  fetch("api/update-cart.php", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: `product_id=${productId}&action=remove`,
@@ -462,7 +462,7 @@ function updateCartCount(count) {
 }
 
 function loadCartCount() {
-  fetch("get-cart-count.php")
+  fetch("api/get-cart-count.php")
     .then((response) => response.json())
     .then((data) => {
       if (data.success) {
@@ -478,7 +478,7 @@ function loadCartCount() {
 // Profile check function for index.php
 function checkProfileCompletion() {
   return new Promise((resolve, reject) => {
-    fetch("check-profile-completion.php")
+    fetch("api/check-profile-completion.php")
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {

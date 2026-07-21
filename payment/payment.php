@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
+require_once '../database/db.php';
 
 // DEBUG: Log payment processing
 error_log("🔍 PAYMENT DEBUG: Payment processing started");
@@ -36,8 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if ($from_cart) {
         // Get cart items for this user
-        $pdo = new PDO("mysql:host=localhost;dbname=lcj", "root", "");
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         $stmt = $pdo->prepare("
             SELECT c.product_id, c.quantity, p.price, p.name
@@ -97,13 +96,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (move_uploaded_file($uploadedFile['tmp_name'], $targetPath)) {
                 // ✅ 4. Save metadata to the database
                 try {
-                    $pdo = new PDO(
-                        "mysql:host=localhost;dbname=lcj",
-                        "root",
-                        ""
-                    ); 
-                    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
                     $service = $_POST['service'] ?? '';
                     $reference_number = $reference;
                     // Insert into the payments table (store filename only)

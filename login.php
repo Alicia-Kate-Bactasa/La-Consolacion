@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'db.php';
+require_once 'database/db.php';
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $admin_data = $admin_stmt->fetch();
                 $_SESSION['admin_level'] = $admin_data['admin_level'] ?? null;
                 
-                header('Location: admin-overview.php');
+                header('Location: admin/overview.php');
                 exit();
             } else {
                 header('Location: index.php');

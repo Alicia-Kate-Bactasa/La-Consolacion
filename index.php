@@ -49,7 +49,7 @@ session_start();
                 $profileName = 'Guest';
                 $profileEmail = 'Not logged in';
                 if (isset($_SESSION['user_id'])) {
-                  require_once 'db.php';
+                  require_once 'database/db.php';
                   $stmt = $pdo->prepare('SELECT username, email, first_name, profile_image FROM users WHERE id = ?');
                   $stmt->execute([$_SESSION['user_id']]);
                   $user = $stmt->fetch();
@@ -117,7 +117,7 @@ session_start();
                     
                     <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                     <a
-                      href="admin-overview.php"
+                      href="admin/overview.php"
                       class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-xl transition-all duration-200 group mx-1 mt-1"
                     >
                       <div class="w-8 h-8 rounded-lg flex items-center justify-center mr-3 bg-blue-50">
@@ -181,7 +181,7 @@ session_start();
           </div>
 
           <!-- Mobile Menu Button -->
-          <button class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
             <i class="bx bx-menu text-2xl text-gray-700"></i>
           </button>
         </div>
@@ -490,5 +490,83 @@ session_start();
       
 
     </script>
-  </body>
+  
+<!-- Mobile Menu Overlay -->
+<div id="mobileMenuOverlay" class="fixed inset-0 bg-black/50 z-50 hidden opacity-0 transition-opacity duration-300 backdrop-blur-sm">
+  <div class="fixed top-0 right-0 w-80 h-full bg-white shadow-2xl p-6 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out" id="mobileMenuDrawer">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+      <img src="Image/LCJ.png" alt="LA Consolacion Logo" class="h-10 w-auto" />
+      <button id="closeMobileMenuBtn" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+        <i class="bx bx-x text-2xl text-gray-600"></i>
+      </button>
+    </div>
+    <!-- Links -->
+    <nav class="flex flex-col space-y-4 mb-auto">
+      <a href="index.php" class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors py-2 border-b border-gray-50 flex items-center gap-3"><i class="bx bx-home text-xl text-blue-600"></i> Home</a>
+      <a href="shop.php" class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors py-2 border-b border-gray-50 flex items-center gap-3"><i class="bx bx-shopping-bag text-xl text-blue-600"></i> Shop All</a>
+      <a href="#steps" class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors py-2 border-b border-gray-50 flex items-center gap-3"><i class="bx bx-wrench text-xl text-blue-600"></i> Order Custom</a>
+      <a href="#about" class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors py-2 border-b border-gray-50 flex items-center gap-3"><i class="bx bx-info-circle text-xl text-blue-600"></i> About Us</a>
+      <a href="#contact" class="text-lg font-semibold text-gray-800 hover:text-blue-600 transition-colors py-2 border-b border-gray-50 flex items-center gap-3"><i class="bx bx-phone text-xl text-blue-600"></i> Contact Us</a>
+    </nav>
+    <!-- User / Profile Quick Links -->
+    <div class="border-t border-gray-100 pt-6">
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <a href="profile.php" class="flex items-center gap-3 py-3 text-gray-700 hover:text-blue-600 transition-colors"><i class="bx bx-user text-xl text-blue-600"></i> View Profile</a>
+        <a href="shop.php?openCart=true" class="flex items-center gap-3 py-3 text-gray-700 hover:text-blue-600 transition-colors"><i class="bx bx-cart text-xl text-blue-600"></i> My Cart</a>
+        <a href="logout.php" class="flex items-center gap-3 py-3 text-red-600 hover:text-red-700 transition-colors"><i class="bx bx-log-out text-xl"></i> Logout</a>
+      <?php else: ?>
+        <a href="login.php" class="flex items-center justify-center gap-2 w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-colors"><i class="bx bx-log-in text-lg"></i> Login / Register</a>
+      <?php endif; ?>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+  const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+
+  if (mobileMenuBtn && mobileMenuOverlay && mobileMenuDrawer && closeMobileMenuBtn) {
+    function openMobileMenu() {
+      mobileMenuOverlay.classList.remove('hidden');
+      setTimeout(() => {
+        mobileMenuOverlay.classList.remove('opacity-0');
+        mobileMenuOverlay.classList.add('opacity-100');
+        mobileMenuDrawer.classList.remove('translate-x-full');
+        mobileMenuDrawer.classList.add('translate-x-0');
+      }, 10);
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMobileMenu() {
+      mobileMenuOverlay.classList.remove('opacity-100');
+      mobileMenuOverlay.classList.add('opacity-0');
+      mobileMenuDrawer.classList.remove('translate-x-0');
+      mobileMenuDrawer.classList.add('translate-x-full');
+      setTimeout(() => {
+        mobileMenuOverlay.classList.add('hidden');
+      }, 300);
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    closeMobileMenuBtn.addEventListener('click', closeMobileMenu);
+    mobileMenuOverlay.addEventListener('click', function(e) {
+      if (!mobileMenuDrawer.contains(e.target)) {
+        closeMobileMenu();
+      }
+    });
+    
+    // Close on link click
+    mobileMenuDrawer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+  }
+});
+</script>
+
+</body>
 </html>

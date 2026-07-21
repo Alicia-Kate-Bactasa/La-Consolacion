@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once 'database/db.php';
 
 $order_id = isset($_GET['order_id']) ? (int)$_GET['order_id'] : 0;
 

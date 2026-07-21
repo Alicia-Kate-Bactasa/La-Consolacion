@@ -1,5 +1,5 @@
 <?php
-require_once 'db.php';
+require_once 'database/db.php';
 if (!isset($_GET['id'])) {
     die('No custom order ID provided.');
 }

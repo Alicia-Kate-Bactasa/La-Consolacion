@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require 'database/db.php';
 
 $message = '';
 $success = false;
