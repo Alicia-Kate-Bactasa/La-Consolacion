@@ -13,22 +13,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
-            $_SESSION['user_id'] = $user['id'];
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['role'] = $user['role'];
-            
-            // If admin, fetch admin level
-            if ($user['role'] === 'admin') {
-                $admin_stmt = $pdo->prepare('SELECT admin_level FROM admin WHERE user_id = ?');
-                $admin_stmt->execute([$user['id']]);
-                $admin_data = $admin_stmt->fetch();
-                $_SESSION['admin_level'] = $admin_data['admin_level'] ?? null;
-                
-                header('Location: admin/overview.php');
-                exit();
+            // Check if email is verified
+            if (!$user['is_verified']) {
+                $error = 'Please verify your email address first. Check your inbox for the verification link.';
             } else {
-                header('Location: index.php');
-                exit();
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role'];
+                
+                // If admin, fetch admin level
+                if ($user['role'] === 'admin') {
+                    $admin_stmt = $pdo->prepare('SELECT admin_level FROM admin WHERE user_id = ?');
+                    $admin_stmt->execute([$user['id']]);
+                    $admin_data = $admin_stmt->fetch();
+                    $_SESSION['admin_level'] = $admin_data['admin_level'] ?? null;
+                    
+                    header('Location: admin/overview.php');
+                    exit();
+                } else {
+                    header('Location: index.php');
+                    exit();
+                }
             }
         } else {
             $error = 'Invalid email or password.';
