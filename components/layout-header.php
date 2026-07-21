@@ -35,8 +35,7 @@ $inventoryActive = in_array($currentPage, ['inventory.php', 'add-product.php', '
 <header class="glass sticky top-0 z-50 px-6 py-4 border-b border-gray-200">
   <div class="flex items-center justify-between">
     <div class="flex items-center space-x-4">
-      <!-- Hamburger Menu Button for Mobile -->
-      <button id="mobile-sidebar-toggle" class="lg:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-lg">
+      <button id="mobile-sidebar-toggle" class="lg:hidden p-2 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-lg" aria-label="Toggle Sidebar" title="Toggle Sidebar">
         <i data-lucide="menu" class="w-6 h-6"></i>
       </button>
       <div class="flex items-center space-x-3">

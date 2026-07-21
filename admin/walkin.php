@@ -78,7 +78,7 @@ $products = $pdo->query("SELECT id, name, price, stock FROM products WHERE delet
         <div class="max-w-2xl mx-auto">
             <div class="mb-8 flex items-center justify-between">
                 <h1 class="text-4xl font-bold text-gray-800">Walk-In Order</h1>
-                <a href="orders.php" class="p-2 hover:bg-gray-100 rounded-full transition"><i data-lucide="x" class="w-8 h-8 text-gray-400"></i></a>
+                <a href="orders.php" class="p-2 hover:bg-gray-100 rounded-full transition" aria-label="Cancel and go back to orders" title="Cancel and go back to orders"><i data-lucide="x" class="w-8 h-8 text-gray-400"></i></a>
             </div>
 
             <div class="bg-white p-8 rounded-3xl shadow-2xl border border-blue-100">

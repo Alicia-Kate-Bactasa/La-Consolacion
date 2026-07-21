@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="flex flex-col items-center">
                 <div id="editImagePreviewContainer" class="relative mb-2" style="<?php echo !empty($product['image']) ? '' : 'display: none;'; ?>">
                     <img id="editImagePreview" src="<?php echo !empty($product['image']) ? '../Image/product-add/' . htmlspecialchars($product['image']) : ''; ?>" alt="Current Image" class="w-32 h-32 object-cover rounded-xl mb-2 shadow" />
-                    <button type="button" id="removeEditImageBtn" class="absolute -top-3 -right-3 w-7 h-7 flex items-center justify-center bg-red-500 text-white rounded-full shadow hover:bg-red-600 transition border-2 border-white z-10" title="Remove image">
+                    <button type="button" id="removeEditImageBtn" class="absolute -top-3 -right-3 w-7 h-7 flex items-center justify-center bg-red-500 text-white rounded-full shadow hover:bg-red-600 transition border-2 border-white z-10" title="Remove image" aria-label="Remove image">
                         <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="block" xmlns="http://www.w3.org/2000/svg">
                           <line x1="3" y1="3" x2="9" y2="9" stroke="white" stroke-width="2" stroke-linecap="round"/>
                           <line x1="9" y1="3" x2="3" y2="9" stroke="white" stroke-width="2" stroke-linecap="round"/>

@@ -231,6 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 id="removeEditImageBtn"
                 class="absolute -top-3 -right-3 w-7 h-7 flex items-center justify-center bg-red-500 text-white rounded-full shadow hover:bg-red-600 transition border-2 border-white z-10"
                 title="Remove image"
+                aria-label="Remove image"
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="block" xmlns="http://www.w3.org/2000/svg">
                   <line x1="3" y1="3" x2="9" y2="9" stroke="white" stroke-width="2" stroke-linecap="round"/>

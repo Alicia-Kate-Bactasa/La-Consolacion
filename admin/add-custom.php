@@ -227,7 +227,7 @@ View order details in admin panel.";
             <div class="flex flex-col items-center">
                 <div id="addImagePreviewContainer" class="relative mb-2 hidden">
                     <img id="addImagePreview" src="" alt="Preview" class="w-32 h-32 object-cover rounded-xl shadow-lg border-2 border-blue-100 bg-white" />
-                    <button type="button" id="removeAddImageBtn" class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 bg-white bg-opacity-80 rounded-full text-xl font-bold leading-none text-gray-700 hover:bg-red-100 hover:text-red-600 transition" title="Remove image">×</button>
+                    <button type="button" id="removeAddImageBtn" class="absolute top-0 right-0 flex items-center justify-center w-8 h-8 bg-white bg-opacity-80 rounded-full text-xl font-bold leading-none text-gray-700 hover:bg-red-100 hover:text-red-600 transition" title="Remove image" aria-label="Remove image">×</button>
                 </div>
                 <label id="addUploadBox" class="w-full flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-8 bg-gray-50 text-gray-600 cursor-pointer transition hover:bg-gray-100 relative">
                     <span class="text-4xl mb-2">

@@ -214,7 +214,7 @@ try {
               <p class="font-bold text-lg">Sale Recorded!</p>
               <p class="text-emerald-100 text-sm">Inventory has been updated successfully.</p>
             </div>
-            <button onclick="hideToast()" class="ml-4 text-emerald-200 hover:text-white">
+            <button onclick="hideToast()" class="ml-4 text-emerald-200 hover:text-white" aria-label="Close notification" title="Close notification">
               <i data-lucide="x" class="w-5 h-5"></i>
             </button>
           </div>
@@ -543,7 +543,7 @@ try {
               <p class="text-sm text-gray-600">Transaction information and proof of payment</p>
             </div>
           </div>
-          <button id="closePaymentModal" class="text-gray-400 hover:text-gray-700 transition-colors p-2 rounded-full hover:bg-gray-100">
+          <button id="closePaymentModal" class="text-gray-400 hover:text-gray-700 transition-colors p-2 rounded-full hover:bg-gray-100" aria-label="Close modal" title="Close Modal">
             <i data-lucide="x" class="w-5 h-5"></i>
           </button>
         </div>
@@ -561,7 +561,7 @@ try {
   <!-- Order Details Modal -->
   <div id="orderDetailsModal" class="fixed inset-0 bg-black bg-opacity-60 z-50 hidden items-center justify-center p-4">
     <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
-      <button id="closeOrderDetailsModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl z-10">&times;</button>
+      <button id="closeOrderDetailsModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl z-10" aria-label="Close modal" title="Close Modal">&times;</button>
 
       <!-- Modal Header -->
       <div class="bg-gradient-to-r from-slate-50 to-sky-50 px-8 py-6 border-b border-gray-200 rounded-t-2xl">

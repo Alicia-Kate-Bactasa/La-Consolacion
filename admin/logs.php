@@ -271,7 +271,7 @@ try {
                       if ($i == $page) {
                         echo '<span class="px-3 py-2 text-sm font-medium text-white bg-blue-600 border border-blue-600 rounded-lg">' . $i . '</span>';
                       } else {
-                        echo '<a href="logs.php?page=" . $i . '" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors">' . $i . '</a>';
+                        echo '<a href="logs.php?page=' . $i . '" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors">' . $i . '</a>';
                       }
                     }
                     
@@ -280,7 +280,7 @@ try {
                       if ($endPage < $totalPages - 1) {
                         echo '<span class="px-2 text-gray-400">...</span>';
                       }
-                      echo '<a href="logs.php?page=" . $totalPages . '" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors">' . $totalPages . '</a>';
+                      echo '<a href="logs.php?page=' . $totalPages . '" class="px-3 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 hover:text-gray-700 transition-colors">' . $totalPages . '</a>';
                     }
                     ?>
                   </div>
